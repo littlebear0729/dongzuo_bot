@@ -27,7 +27,7 @@ try:
 			if pattern.search(message.text[1::]) == None:
 				send_name = str(message.from_user.first_name)
 				reply_name = str(message.reply_to_message.from_user.first_name)
-				bot.reply_to(message, send_name + " " + message.text[1::] + " 了 " + reply_name + " ！")
+				bot.reply_to(message, "[" + send_name + "](" + "tg://user?id=" + str(message.from_user.id) + ") " + message.text[1::] + " 了 [" + reply_name + "](" + "tg://user?id="+ str(message.reply_to_message.from_user.id) + ") ！", parse_mode="Markdown")
 
 	bot.polling(none_stop=True)
 except KeyboardInterrupt:
