@@ -35,9 +35,9 @@ try:
 		curr_time = time.time()
 		randNum = random.randint(0, 100)
 
-		if last_msg == message.text and curr_time - last_time_repeated >= 60:
+		if last_msg == message.text and curr_time - last_time_repeated >= 60 and message.text[0] != "/":
 			last_time_repeated = time.time()
-			bot.forward_message(message.chat.id, message.chat.id, message.id)
+			bot.forward_message(message.chat.id, message.chat.id, message.message_id)
 		last_msg = message.text
 
 		if message.text == '草' and curr_time - last_time_forwarded_cao >= 30:
@@ -50,7 +50,7 @@ try:
 		if message.text[0] == "/" and message.reply_to_message != None and message.reply_to_message.from_user.username != "littlebear_group_helper_bot" and message.reply_to_message.from_user.username != message.from_user.username and len(message.text) <= 10:
 			send_name = str(message.from_user.first_name)
 			reply_name = str(message.reply_to_message.from_user.first_name)
-			if randNum % 5 == 0:
+			if randNum % 3 == 0:
 				text = '{send_name} {movement} 了 {reply_name} ！{emoji}'.format(send_name=send_name, movement=message.text[1::], reply_name=reply_name, emoji=emoji[randNum % (len(emoji)-1)])
 				bot.reply_to(message, text, parse_mode="Markdown")
 
