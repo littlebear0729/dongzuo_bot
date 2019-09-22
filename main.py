@@ -25,12 +25,14 @@ try:
 	last_time_forwarded_cao = 0
 	last_time_repeated = 0
 	last_time_greeting = 0
+	last_time_nazabanma = 0
 	last_msg = ""
 	@bot.message_handler(func=lambda message: True)
 	def all(message):
 		global last_time_forwarded_cao
 		global last_time_repeated
 		global last_time_greeting
+		global last_time_nazabanma
 		global last_msg
 		curr_time = time.time()
 		randNum = random.randint(0, 100)
@@ -43,9 +45,13 @@ try:
 		if message.text == '草' and curr_time - last_time_forwarded_cao >= 30:
 			last_time_forwarded_cao = time.time()
 			if randNum % 2 == 0:
-				bot.send_message(message.chat.id, '草')
+				bot.forward_message(message.chat.id, message.chat.id, message.message_id)
 			else:
 				bot.send_sticker(message.chat.id, 'CAADBQADawADvXbGBYun-zdWQQwmFgQ')
+
+		if message.text == '那咋办嘛' and curr_time - last_time_nazabanma >= 30:
+			last_time_nazabanma = time.time()
+			bot.forward_message(message.chat.id, message.chat.id, message.message_id)
 		
 		if message.text[0] == "/" and message.reply_to_message != None and message.reply_to_message.from_user.username != "littlebear_group_helper_bot" and message.reply_to_message.from_user.username != message.from_user.username and len(message.text) <= 10:
 			send_name = str(message.from_user.first_name)
