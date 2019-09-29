@@ -56,15 +56,15 @@ try:
 		if message.text[0] == '/' and message.reply_to_message != None and message.reply_to_message.from_user.username != 'littlebear_group_helper_bot' and message.reply_to_message.from_user.username != message.from_user.username and len(message.text) <= 10:
 			send_name = str(message.from_user.first_name)
 			reply_name = str(message.reply_to_message.from_user.first_name)
-			if message.reply_to_message.from_user.username != 'littlebear0729' and randNum % 3 == 0:
+			if message.reply_to_message.from_user.id != 400521524 and randNum % 3 == 0:
 				text = '{send_name} {movement} 了 {reply_name} ！{emoji}'.format(send_name=send_name, movement=message.text[1::], reply_name=reply_name, emoji=emoji[randNum % (len(emoji)-1)])
 				bot.reply_to(message, text, parse_mode="Markdown")
-			if message.reply_to_message.from_user.username == 'littlebear0729':
+			if message.reply_to_message.from_user.id == 400521524:
 				if randNum % 5 == 0:
 					text = '{send_name} {movement} 了 {reply_name} ！{emoji}'.format(send_name=send_name, movement=message.text[1::], reply_name=reply_name, emoji=emoji[randNum % (len(emoji)-1)])
 					bot.reply_to(message, text, parse_mode="Markdown")
 				else:
-					bot.send_message('littlebear0729', '{send_name} 想用 {movement} 迫害你！被你秘书我及时阻止了！'.format(send_name=send_name, movemont=message.text[1::]))
+					bot.send_message(400521524, '{send_name} 想用 {movement} 迫害你！被你秘书我及时阻止了！'.format(send_name=send_name, movemont=message.text[1::]))
 
 		if message.from_user.id == 704759255 and curr_time - last_time_greeting >= 300:
 			last_time_greeting = time.time()
