@@ -56,7 +56,7 @@ try:
                 last_time_nazabanma = time.time()
                 bot.forward_message(
                     message.chat.id, message.chat.id, message.message_id)
-            if message.text[1] == '?' and curr_time - last_time_wenhao >= 30:
+            if message.text[1] == '？' and curr_time - last_time_wenhao >= 30:
                 last_time_wenhao = time.time()
                 bot.send_message(message.chat.id, '？')
 
@@ -69,14 +69,14 @@ try:
                 text = '{send_name} {movement} 了 {reply_name} ！{emoji}'.format(
                     send_name=send_name, movement=message.text[1::], reply_name=reply_name, emoji=emoji[randNum % (len(emoji)-1)])
                 bot.reply_to(message, text, parse_mode="Markdown")
-            if message.reply_to_message.from_user.id == 400521524:
-                if randNum % 5 == 0:
-                    text = '{send_name} {movement} 了 {reply_name} ！{emoji}'.format(
-                        send_name=send_name, movement=message.text[1::], reply_name=reply_name, emoji=emoji[randNum % (len(emoji)-1)])
-                    bot.reply_to(message, text, parse_mode="Markdown")
-                else:
-                    bot.send_message(400521524, '{send_name} 想用 {movement} 迫害你！被你秘书我及时阻止了！'.format(
-                        send_name=send_name, movemont=message.text[1::]))
+            if message.reply_to_message.from_user.id == 400521524 and randNum % 5 == 0:
+                text = '{send_name} {movement} 了 {reply_name} ！{emoji}'.format(
+                    send_name=send_name, movement=message.text[1::], reply_name=reply_name, emoji=emoji[randNum % (len(emoji)-1)])
+                bot.reply_to(message, text, parse_mode="Markdown")
+            if message.from_user.id == 400521524 and randNum % 2 == 0:
+                text = '{send_name} {movement} 了 {reply_name} ！{emoji}'.format(
+                    send_name=send_name, movement=message.text[1::], reply_name=reply_name, emoji=emoji[randNum % (len(emoji)-1)])
+                bot.reply_to(message, text, parse_mode="Markdown")
 
         if message.from_user.id == 704759255 and curr_time - last_time_greeting >= 300:
             last_time_greeting = time.time()
